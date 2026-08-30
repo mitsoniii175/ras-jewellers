@@ -1,3 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist/client"
+
+# Shown by the "Deploy to Netlify" flow so the required settings are collected
+# during setup instead of being forgotten afterwards.
+[template.environment]
+  ADMIN_BOOTSTRAP_EMAIL = "Your email — used once to create the first admin account at /admin"
+  ADMIN_BOOTSTRAP_PASSWORD = "Choose a password, at least 12 characters. Delete both of these after your first login."
