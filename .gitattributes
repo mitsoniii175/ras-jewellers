@@ -1,0 +1,8 @@
+# Normalise line endings so Windows and the Linux build agent agree.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending converted.
+*.jpg binary
+*.png binary
+*.ico binary
+*.webp binary

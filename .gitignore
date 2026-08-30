@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+.tanstack
+.output
+.nitro
+
+# Local Netlify folder (includes the local Blobs dev store)
+.netlify
+
+# Local dev store for customer accounts (see src/lib/server/kv.ts).
+# Never commit this - it holds real customer records.
+.data
+
+# Environment / secrets. Real values belong in the Netlify UI, never in git.
+.env
+.env.*
+!.env.example
+
+# Editor / OS noise
+.DS_Store
+*.local
