@@ -70,7 +70,13 @@ export function Header() {
           </Link>
           <div className="mx-1 hidden h-6 w-px bg-border lg:block" />
           <div className="hidden items-center gap-2 text-muted-foreground lg:flex">
-            <a href="#" aria-label="Facebook" className="transition-colors hover:text-gold-dark">
+            <a
+              href={SITE.facebook}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Facebook"
+              className="transition-colors hover:text-gold-dark"
+            >
               <Facebook className="h-4 w-4" />
             </a>
             <a

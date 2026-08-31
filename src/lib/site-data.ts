@@ -6,7 +6,8 @@ export const SITE = {
   whatsapp: "919898762093",
   email: "info@rasjewellers.com",
   established: "Est. 2000 · 25+ Years of Trust",
-  instagram: "https://instagram.com/rasjewellers", // TODO: replace with your real Instagram handle/link
+  instagram: "https://www.instagram.com/rasjewelsofficial",
+  facebook: "https://www.facebook.com/ras.jewellery.2025",
 };
 
 /**
@@ -71,7 +72,8 @@ export const MATERIAL_COLLECTIONS: {
   {
     title: "Gold Collection",
     material: "gold",
-    description: "22K & 24K BIS hallmarked gold, handcrafted for everyday elegance and celebration.",
+    description:
+      "22K & 24K BIS hallmarked gold, handcrafted for everyday elegance and celebration.",
     image: CATALOG.find((p) => p.material === "gold")?.image ?? "",
   },
   {
