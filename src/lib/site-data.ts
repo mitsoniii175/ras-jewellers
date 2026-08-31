@@ -27,6 +27,52 @@ export const RATES: {
   updatedOn: null,
 };
 
+/**
+ * The two showrooms.
+ *
+ * `mapUrl` is left empty until the real Google Maps links are supplied — a
+ * guessed map pin would send customers to the wrong shop, which is worse than
+ * showing no map button at all. To fill these in: open Google Maps, find the
+ * showroom, tap Share, Copy link, and paste it below.
+ */
+export const SHOWROOMS: {
+  name: string;
+  address: string;
+  mapUrl: string;
+  hours?: string;
+}[] = [
+  {
+    name: "Haldharvas Showroom",
+    address: "Haldharvas, Gujarat",
+    mapUrl: "",
+  },
+  {
+    name: "Khatlal Showroom",
+    address: "Khatlal, Gujarat",
+    mapUrl: "",
+  },
+];
+
+/** Long-form brand story, shown on /about. */
+export const ABOUT = {
+  established: "2000",
+  paragraphs: [
+    "For over 25 years, RAS JEWELLERS has been a symbol of trust, purity, and timeless craftsmanship. Our journey began in Haldharvas, where we earned the confidence of generations through genuine quality, transparent service, and beautifully crafted jewellery. Today, with the opening of our new showroom in Khatlal, we are proud to bring the same legacy of excellence to even more families.",
+    "Every jewellery piece we create tells a story. From elegant everyday collections to magnificent bridal masterpieces, our carefully curated range of Gold, Silver and Bridal Jewellery is designed to celebrate life's most precious moments. Each design reflects exceptional artistry, certified purity, and attention to every detail.",
+    "At RAS JEWELLERS, we believe jewellery is more than an accessory. It is a reflection of tradition, love, achievement, and memories that are cherished for generations. Our commitment to authenticity, fair pricing, and personalized customer service has made us a trusted destination for thousands of happy customers.",
+    "Whether you're celebrating a wedding, an anniversary, a festival, or simply looking for something special, our experienced team is dedicated to helping you find the perfect piece that matches your style and emotions.",
+    "Visit us at our Haldharvas or Khatlal showroom and experience a world where heritage meets modern elegance.",
+  ],
+  promises: [
+    "25+ Years of Trusted Excellence",
+    "Certified Purity & Quality Assurance",
+    "Exclusive Gold & Silver Collections",
+    "Bridal Jewellery Specialists",
+    "Transparent Pricing",
+    "Personalized Customer Service",
+  ],
+};
+
 export const ANNOUNCEMENTS = [
   "100% BIS Hallmarked Jewellery",
   "HUID Enabled",
@@ -43,6 +89,7 @@ export const NAV = [
   { label: "Collection", items: ["Bridal", "Wedding", "Daily Wear", "Antique"] },
   { label: "Gifts", items: ["For Her", "For Him", "For Kids"] },
   { label: "Product Family", items: ["Gold", "Silver", "Diamond"] },
+  { label: "About", items: [] },
   { label: "Enquire", items: [] },
 ];
 

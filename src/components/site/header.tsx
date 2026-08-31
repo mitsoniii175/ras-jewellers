@@ -120,10 +120,14 @@ export function Header() {
               </Link>
             </li>
             {NAV.map((n) =>
-              n.label === "Enquire" ? (
+              n.label === "Enquire" || n.label === "About" ? (
                 <li key={n.label}>
-                  <Link to="/enquire" className="text-sm font-medium text-foreground/80">
-                    Enquire
+                  <Link
+                    to={n.label === "About" ? "/about" : "/enquire"}
+                    onClick={() => setMenuOpen(false)}
+                    className="text-sm font-medium text-foreground/80"
+                  >
+                    {n.label}
                   </Link>
                 </li>
               ) : (
@@ -140,13 +144,13 @@ export function Header() {
       <nav className="hidden border-t border-border lg:block">
         <ul className="container-x flex items-center justify-center gap-8 py-3">
           {NAV.map((n) =>
-            n.label === "Enquire" ? (
+            n.label === "Enquire" || n.label === "About" ? (
               <li key={n.label}>
                 <Link
-                  to="/enquire"
+                  to={n.label === "About" ? "/about" : "/enquire"}
                   className="text-sm font-medium text-foreground/80 transition-colors hover:text-gold-dark"
                 >
-                  Enquire
+                  {n.label}
                 </Link>
               </li>
             ) : (

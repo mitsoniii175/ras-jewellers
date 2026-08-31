@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { SITE, NAV } from "@/lib/site-data";
+import { SITE, NAV, SHOWROOMS } from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -66,14 +66,24 @@ export function Footer() {
         <div>
           <h4 className="font-sans text-sm font-semibold uppercase tracking-wide">Showrooms</h4>
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-            <li className="flex gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" /> Haldharvas Showroom,
-              Gujarat
-            </li>
-            <li className="flex gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" /> Khatlal Showroom,
-              Gujarat
-            </li>
+            {SHOWROOMS.map((showroom) => (
+              <li key={showroom.name} className="flex gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-dark" />
+                {/* Linked only when a real map URL has been supplied. */}
+                {showroom.mapUrl ? (
+                  <a
+                    href={showroom.mapUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="hover:text-gold-dark"
+                  >
+                    {showroom.address}
+                  </a>
+                ) : (
+                  showroom.address
+                )}
+              </li>
+            ))}
           </ul>
         </div>
 
