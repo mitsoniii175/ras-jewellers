@@ -30,10 +30,8 @@ export const RATES: {
 /**
  * The two showrooms.
  *
- * `mapUrl` is left empty until the real Google Maps links are supplied — a
- * guessed map pin would send customers to the wrong shop, which is worse than
- * showing no map button at all. To fill these in: open Google Maps, find the
- * showroom, tap Share, Copy link, and paste it below.
+ * `mapUrl` values are the owner's own Google Maps share links, so "Get
+ * Directions" opens the correct pin (and the Maps app on a phone).
  */
 export const SHOWROOMS: {
   name: string;
@@ -44,12 +42,12 @@ export const SHOWROOMS: {
   {
     name: "Haldharvas Showroom",
     address: "Haldharvas, Gujarat",
-    mapUrl: "",
+    mapUrl: "https://maps.app.goo.gl/xKVrzWGzkHWnJDir9",
   },
   {
     name: "Khatlal Showroom",
     address: "Khatlal, Gujarat",
-    mapUrl: "",
+    mapUrl: "https://maps.app.goo.gl/gfXG6aCUDszBF1Jq7",
   },
 ];
 
