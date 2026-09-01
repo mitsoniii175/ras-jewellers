@@ -16,6 +16,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as EnquireRouteImport } from './routes/enquire'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
@@ -97,6 +98,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const EnquireRoute = EnquireRouteImport.update({
   id: '/enquire',
   path: '/enquire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShopRoute = ShopRouteImport.update({
@@ -343,6 +349,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/enquire': typeof EnquireRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/account/addresses': typeof AccountAddressesRoute
@@ -397,6 +404,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/enquire': typeof EnquireRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/account/addresses': typeof AccountAddressesRoute
@@ -454,6 +462,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/enquire': typeof EnquireRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/account/addresses': typeof AccountAddressesRoute
@@ -512,6 +521,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/enquire'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
     | '/account/addresses'
@@ -566,6 +576,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/enquire'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
     | '/account/addresses'
@@ -622,6 +633,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/enquire'
+    | '/robots.txt'
     | '/shop'
     | '/sitemap.xml'
     | '/account/addresses'
@@ -679,6 +691,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   EnquireRoute: typeof EnquireRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ApiProductsRoute: typeof ApiProductsRoute
@@ -760,6 +773,13 @@ declare module '@tanstack/react-router' {
       path: '/enquire'
       fullPath: '/enquire'
       preLoaderRoute: typeof EnquireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shop': {
@@ -1153,6 +1173,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   EnquireRoute: EnquireRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ApiProductsRoute: ApiProductsRoute,

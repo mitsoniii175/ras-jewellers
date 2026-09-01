@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 
+import { siteOrigin } from "@/lib/site-url";
 import appCss from "../styles.css?url";
 import { ProductsProvider } from "../lib/product-overrides";
 import { CartProvider } from "../lib/cart-store";
@@ -75,62 +76,70 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat" },
-      {
-        name: "description",
-        content:
-          "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
-      },
-      { name: "author", content: "RAS Jewellers" },
-      {
-        property: "og:title",
-        content: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat",
-      },
-      {
-        property: "og:description",
-        content:
-          "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/518f0830-9cd2-48f9-87db-8ae56a82c17d",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/518f0830-9cd2-48f9-87db-8ae56a82c17d",
-      },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
-  }),
+  head: () => {
+    // Absolute urls, resolved from whichever domain is serving the site.
+    const origin = siteOrigin();
+    const ogImage = origin ? `${origin}/og-image.jpg` : "/og-image.jpg";
+
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { title: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat" },
+        {
+          name: "description",
+          content:
+            "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
+        },
+        { name: "author", content: "RAS Jewellers" },
+        {
+          property: "og:title",
+          content: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat",
+        },
+        {
+          property: "og:description",
+          content:
+            "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
+        },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: "RAS Jewellers | Online Gold & Silver Jewellery in Gujarat",
+        },
+        {
+          name: "twitter:description",
+          content:
+            "Shop exquisite 22K & 24K gold, diamond and 925 silver jewellery from RAS Jewellers. 100% BIS hallmarked, trusted for 25+ years across Gujarat.",
+        },
+        // Self-hosted, so the preview image cannot vanish when someone else's
+        // storage bucket is cleaned up. (This previously pointed at a
+        // gpt-engineer upload left over from the original scaffold.)
+        { property: "og:image", content: ogImage },
+        { property: "og:image:alt", content: "RAS Jewellers gold and diamond jewellery" },
+        { property: "og:site_name", content: "RAS Jewellers" },
+        { property: "og:locale", content: "en_IN" },
+        ...(origin ? [{ property: "og:url", content: origin }] : []),
+        { name: "twitter:image", content: ogImage },
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap",
+        },
+        { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+        // Canonical tells search engines which domain is authoritative, so the
+        // netlify.app address never competes with the real one.
+        ...(origin ? [{ rel: "canonical", href: origin }] : []),
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
